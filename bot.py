@@ -32,7 +32,7 @@ class GithubIssues:
 def main():
     config = dict(
         nick='gluon',
-        host='irc.hackint.org', port='6697', ssl='True',
+        host='irc.hackint.org', port='6697', ssl='True', ssl_verify='CERT_NONE',
         autojoins=['#gluon'],
         includes=[
             'irc3.plugins.core',
