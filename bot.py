@@ -18,6 +18,9 @@ class GithubIssues:
         for issue_id in issue_pattern.findall(data):
             response = requests.get(urljoin(issue_endpoint, issue_id)).json()
 
+            if response.status_code == 404:
+                continue
+
             self.bot.privmsg(
                 target,
                 "[{number}] {title} (by {user[login]}) -- {html_url}".format(
