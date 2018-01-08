@@ -16,15 +16,17 @@ class GithubIssues:
     @irc3.event(irc3.rfc.PRIVMSG)
     def has_issue(self, target, data, **kwargs):
         for issue_id in issue_pattern.findall(data):
-            response = requests.get(urljoin(issue_endpoint, issue_id)).json()
+            response = requests.get(urljoin(issue_endpoint, issue_id))
 
             if response.status_code == 404:
                 continue
 
+            blob = response.json()
+
             self.bot.privmsg(
                 target,
                 "[{number}] {title} (by {user[login]}) -- {html_url}".format(
-                    **response
+                    **blob
                 )
             )
 
