@@ -35,6 +35,7 @@ def main():
     config = dict(
         nick='gluon',
         host='irc.hackint.org', port='6697', ssl='True', ssl_verify='CERT_NONE',
+        max_lag=240,
         autojoins=['#gluon'],
         includes=[
             'irc3.plugins.core',
