@@ -15,7 +15,8 @@ class GithubIssues:
 
     @irc3.event(irc3.rfc.PRIVMSG)
     def has_issue(self, target, data, **kwargs):
-        for issue_id in issue_pattern.findall(data):
+        issues = set(issue_pattern.findall(data))
+        for issue_id in issues:
             response = requests.get(urljoin(issue_endpoint, issue_id))
 
             if response.status_code == 404:
